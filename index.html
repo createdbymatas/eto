@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETO SECURITY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <style>
+        @keyframes blink{
+            0%{
+                opacity: 1;
+            }
+            50%{
+                opacity: 0.1;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+    </style>
+    <audio src="siren.mp3" id="siren"></audio>
+    <audio src="iseiti.mp3" id="iseiti"></audio>
+    <audio src="countdown.mp3" id="countdown"></audio>
+    <audio src="apsaugaOn.mp3" id="apsaugaOn"></audio>
+    <audio src="ieiti.mp3" id="ieiti"></audio>
+    <img src="eto-security.png" alt="ETO SECURITY" style="width: 50px; position: absolute; top: 0; left: 0;">
+    <img src="alarm.png" alt="SIRENA" style="width: 50px; position: absolute; top: 0; right: 0; transition: 0.5s;" id="sirena" onclick="siren()">
+    <img src="off.jpg" style="width: 40px; position: absolute; top: 5px; right: 5px; transition: 0.5s; display: none;" id="atvyko" onclick="alarmOff()">
+    <div style="width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; position: absolute; z-index: 10; display: none;" id="disableTouch"></div>
+    <div style="width: 0; height: 150px; background-color: white; box-shadow: 0 0 5px; position: absolute; top: 50px; opacity: 0; transition: 0.5s; overflow: hidden; right: 0;" id="sirenManual"><p style="font-family: 'Poppins', sans-serif; text-align: center;">Sirena skambės 30 sekundžių.</p><p style="font-family: 'Poppins', sans-serif; text-align: center; color: red;">Sirenai veikiant jos sustabdyti negalima!</p><div style="width: 100%; height: auto; display: flex; justify-content: center; align-items: center;"><button style="width: 40%; background-color: darkseagreen; border: none; font-family: 'Poppins', sans-serif; height: 30px; margin: 10px; border-radius: 15px;" onclick="sirenOn()">Įjungti</button><button style="width: 40%; background-color: red; color: white; border: none; font-family: 'Poppins', sans-serif; height: 30px; margin: 10px; border-radius: 15px;" onclick="sirenCancel()">Atšaukti</button></div></div>
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(27,151,208,255); width: 100%; height: 100%; opacity: 0; display: none; transition: 0.5s;" id="black" onclick="closeAlarm()"></div>
+    <div style="width: auto; height: auto; display: none; justify-content: center; align-items: center; background-color: white; border-radius: 15px; left: 20%; right: 20%; top: 82px; position: absolute; transition: 0.5s; padding: 20px; opacity: 0;" id="lock">
+        <div style="width: 100px; height: 100px; border: 5px solid black; background-color: rgba(27,151,208,255); border-radius: 100%;" onclick="alarmOn()"><img src="lock.png" style="width: 100%; border-radius: 100%;"></div>
+    </div>
+    <div style="width: 50%; height: 300px; display: flex; justify-content: center; align-items: center; margin-left: 25%;" id="isjungimas">
+        <div style="width: 100px; height: 100px; border: 5px solid black; background-color: rgba(27,151,208,255); border-radius: 100%;" id="unlock" onclick="alarmOnConfirmation()"><img src="unlock.png" style="width: 100%; border-radius: 100%;"></div>
+    </div>
+    <div style="width: 50%; height: 300px; display: flex; justify-content: center; align-items: center; margin-left: 25%; display: none;" id="ijungimas">
+        <div style="width: 100px; height: 100px; border: 5px solid black; background-color: rgba(27,151,208,255); border-radius: 100%;" id="unlock"><img src="lock.png" style="width: 100%; border-radius: 100%;"></div>
+    </div>
+    <div style="width: 50%; height: 300px; display: flex; justify-content: center; align-items: center; margin-left: 25%; display: none;" id="isjungimas2">
+        <div style="width: 100px; height: 100px; border: 5px solid black; background-color: rgba(27,151,208,255); border-radius: 100%;" id="unlock2"><img src="unlock.png" style="width: 100%; border-radius: 100%;"></div>
+    </div>
+     <p style="font-family: 'Poppins', sans-serif; text-align: center; color: red; display: none; transition: 0.5s; margin-top: -30px;" id="sirenaVeikia">SIRENA ĮJUNGTA!</p>
+    <p style="font-family: 'Poppins', sans-serif; text-align: center; margin-top: -30px; display: block;" id="apsaugaIsjungta">Apsauga išjungta</p>
+    <p style="font-family: 'Poppins', sans-serif; text-align: center; margin-top: -30px; display: none;" id="apsaugaIjungiama">Apsauga įjungiama...</p>
+    <p style="font-family: 'Poppins', sans-serif; text-align: center; margin-top: -30px; display: none;" id="apsaugaIjungta">Apsauga įjungta</p>
+    <p style="font-family: 'Poppins', sans-serif; text-align: center; color: darkseagreen;" id="jutikliaiOk">Visi jutikliai veikia</p>
+    <p style="font-family: 'Poppins', sans-serif; text-align: center; color: slategray; display: none;" id="durysOpen">Durys buvo atidarytos.</p>
+    <p style="font-family: 'Poppins', sans-serif; text-align: center; color: rgba(27,151,208,255); display: none;" id="waiting" onclick="shutOff()">Laukiama atsakymo...</p>
+
+    <div style="width: 100%; height: 50px; background-color: white; box-shadow: 0 0 5px; display: flex; justify-content: center; align-items: center; position: absolute; bottom: 0; left: 0; right: 0; padding: 5px; z-index: -1; transition: 0.5s;" id="safe"><img src="security.png" alt="Apsauga" style="height: 100%; border-radius: 5px;"></div>
+    <script>
+        function alarmOnConfirmation() {
+            document.getElementById("black").style.display = "block";
+            document.getElementById("lock").style.display = "flex";
+            setTimeout(() => {document.getElementById("black").style.opacity = "0.8";}, 50);
+            setTimeout(() => {document.getElementById("lock").style.opacity = "1";}, 50);
+        }
+        function closeAlarm() {
+            document.getElementById("black").style.opacity = "0";
+            document.getElementById("lock").style.opacity = "0";
+            setTimeout(() => {document.getElementById("black").style.display = "none";}, 500);
+            setTimeout(() => {document.getElementById("lock").style.display = "none";}, 500);
+        }
+        function siren() {
+            document.getElementById("sirenManual").style.width = "100%";
+            setTimeout(() => {document.getElementById("sirenManual").style.opacity = "1";}, 300);
+        }
+        function sirenCancel() {
+            document.getElementById("sirenManual").style.opacity = "0";
+            setTimeout(() => {document.getElementById("sirenManual").style.width = "0";}, 200);
+        }
+        function sirenOn() {
+            document.getElementById("sirenManual").style.opacity = "0";
+            setTimeout(() => {document.getElementById("sirenManual").style.width = "0";}, 200);
+            setTimeout(() => {document.getElementById('siren').play();}, 500);
+            setTimeout(() => {document.getElementById("sirenaVeikia").style.display = "block";}, 500);
+            setTimeout(() => {document.getElementById("disableTouch").style.display = "block";}, 500);
+            setTimeout(() => {document.getElementById("apsaugaIsjungta").style.display = "none";}, 500);
+            setTimeout(() => {document.getElementById("unlock").style.border = "5px solid red";}, 500);
+            setTimeout(() => {document.getElementById("safe").style.backgroundColor = "red";}, 500);
+            setTimeout(() => {document.getElementById('siren').pause();}, 30500);
+            setTimeout(() => {document.getElementById('siren').currentTime = 0;}, 30500);
+            setTimeout(() => {document.getElementById("sirenaVeikia").style.display = "none";}, 30500);
+            setTimeout(() => {document.getElementById("apsaugaIsjungta").style.display = "block";}, 30500);
+            setTimeout(() => {document.getElementById("unlock").style.border = "5px solid black";}, 30500);
+            setTimeout(() => {document.getElementById("disableTouch").style.display = "none";}, 30500);
+            setTimeout(() => {document.getElementById("safe").style.backgroundColor = "white";}, 30500);
+        }
+        function alarmOn() {
+            document.getElementById("black").style.opacity = "0";
+            document.getElementById("lock").style.opacity = "0";
+            document.getElementById('iseiti').play();
+            document.getElementById("ijungimas").style.display = "flex";
+            document.getElementById("isjungimas").style.display = "none";
+            setTimeout(() => {document.getElementById("black").style.display = "none";}, 500);
+            setTimeout(() => {document.getElementById("lock").style.display = "none";}, 500);
+            setTimeout(() => {document.getElementById("sirena").style.opacity = "0";
+            document.getElementById("apsaugaIsjungta").style.display = "none";
+            document.getElementById("apsaugaIjungiama").style.display = "block";
+            document.getElementById("ijungimas").style.webkitAnimation = "blink 1s ease-in-out infinite";}, 4500);
+            setTimeout(() => {document.getElementById('countdown').play();}, 4500);
+            setTimeout(() => {document.getElementById("sirena").style.display = "none";}, 5000);
+            setTimeout(() => {document.getElementById("ijungimas").style.webkitAnimation = "blink 0.6s ease-in-out infinite";}, 24500);
+            setTimeout(() => {document.getElementById("ijungimas").style.webkitAnimation = "blink 0.3s ease-in-out infinite";}, 30700);
+            setTimeout(() => {document.getElementById("ijungimas").style.webkitAnimation = "none";}, 33500);
+            setTimeout(() => {document.getElementById("apsaugaIjungta").style.display = "block";}, 35500);
+            setTimeout(() => {document.getElementById("apsaugaIjungiama").style.display = "none";}, 35500);
+            setTimeout(() => {document.getElementById('apsaugaOn').play();}, 33500);
+            setTimeout(() => {document.getElementById("safe").style.backgroundColor = "rgba(27,151,208,255)";}, 35500);
+            setTimeout(() => {document.getElementById("atvyko").style.display = "block";}, 35500);
+        }
+        function alarmOff() {
+            document.getElementById("atvyko").style.display = "none";
+            document.getElementById("jutikliaiOk").style.display = "none";
+            document.getElementById("durysOpen").style.display = "block";
+            document.getElementById('ieiti').play();
+            setTimeout(() => {document.getElementById('countdown').play();}, 4500);
+            setTimeout(() => {document.getElementById("ijungimas").style.display = "none";}, 4500);
+            setTimeout(() => {document.getElementById("waiting").style.display = "block";}, 4500);
+            setTimeout(() => {document.getElementById("isjungimas2").style.display = "flex";}, 4500);
+            setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "blink 1s ease-in-out infinite";}, 4500);
+            setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "blink 0.6s ease-in-out infinite";}, 24500);
+            setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "blink 0.3s ease-in-out infinite";}, 30700);
+            setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "none";}, 34000);
+            setTimeout(() => {document.getElementById('siren').play();}, 34500);
+            setTimeout(() => {document.getElementById("apsaugaIjungta").style.display = "none";}, 34500);
+            setTimeout(() => {document.getElementById("sirenaVeikia").style.display = "block";}, 34500);
+            setTimeout(() => {document.getElementById("safe").style.backgroundColor = "red";}, 34500);
+            setTimeout(() => {document.getElementById("unlock2").style.border = "5px solid red";}, 34500);
+            setTimeout(() => {document.getElementById('siren').pause();}, 300000);
+            setTimeout(() => {document.getElementById('siren').currentTime = 0;}, 300000);
+            setTimeout(() => {document.getElementById('siren').play();}, 300500);
+            setTimeout(() => {document.getElementById('siren').pause();}, 600000);
+            setTimeout(() => {document.getElementById('siren').currentTime = 0;}, 600000);
+            setTimeout(() => {document.getElementById('siren').play();}, 600500);
+        }
+        function shutOff() {
+            document.getElementById("waiting").style.display = "none";
+            document.getElementById("sirenaVeikia").style.display = "none";
+            document.getElementById("jutikliaiOk").style.display = "block";
+            document.getElementById("apsaugaIsjungta").style.display = "block";
+            document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("unlock2").style.border = "5px solid black";
+            document.getElementById("isjungimas2").style.webkitAnimation = "none";
+            document.getElementById('countdown').pause();
+            document.getElementById("safe").style.backgroundColor = "white";
+            document.getElementById("sirena").style.display = "block";
+            setTimeout(() => {document.getElementById("sirena").style.opacity = "1";}, 50);
+            setTimeout(() => {document.getElementById('siren').pause();}, 50);
+            setTimeout(() => {document.getElementById('siren').pause();}, 100);
+            setTimeout(() => {document.getElementById('siren').pause();}, 150);
+            setTimeout(() => {document.getElementById('siren').pause();}, 200);
+            setTimeout(() => {document.getElementById('siren').pause();}, 250);
+            setTimeout(() => {document.getElementById('siren').pause();}, 300);
+            setTimeout(() => {document.getElementById('siren').pause();}, 350);
+            setTimeout(() => {document.getElementById('siren').pause();}, 400);
+            setTimeout(() => {document.getElementById('siren').pause();}, 450);
+            setTimeout(() => {document.getElementById('siren').pause();}, 500);
+            setTimeout(() => {document.getElementById('siren').pause();}, 550);
+            setTimeout(() => {location.replace("index.html")}, 550);
+        }
+    </script>
+</body>
+</html>
