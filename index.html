@@ -17,7 +17,7 @@
                 opacity: 1;
             }
             50%{
-                opacity: 0.1;
+                opacity: 0;
             }
             100%{
                 opacity: 1;
@@ -56,6 +56,8 @@
     <div style="width: auto; height: auto; display: none; justify-content: center; align-items: center; background-color: white; border-radius: 15px; left: 20%; right: 20%; top: 82px; position: absolute; transition: 0.5s; padding: 20px; opacity: 0;" id="lock">
         <div style="width: 100px; height: 100px; border: 5px solid black; background-color: rgba(27,151,208,255); border-radius: 100%;" onclick="alarmOn()"><img src="lock.png" style="width: 100%; border-radius: 100%;"></div>
     </div>
+    <div style="width: 0; height: 10px; background-color: red; position: absolute; left: 2.5%; top: 250px; border-radius: 15px; transition: 30s width linear;" id="red"></div>
+    <div style="width: 95%; height: 10px; display: none; background-color: red; position: absolute; left: 2.5%; top: 250px; border-radius: 15px;" id="red2"></div>
     <div style="width: 50%; height: 300px; display: flex; justify-content: center; align-items: center; margin-left: 25%;" id="isjungimas">
         <div style="width: 100px; height: 100px; border: 5px solid black; background-color: rgba(27,151,208,255); border-radius: 100%;" id="unlock" onclick="alarmOnConfirmation()"><img src="unlock.png" style="width: 100%; border-radius: 100%;"></div>
     </div>
@@ -106,6 +108,8 @@
             setTimeout(() => {document.getElementById('siren').play();}, 500);
             setTimeout(() => {document.getElementById("sirenaVeikia").style.display = "block";}, 500);
             setTimeout(() => {document.getElementById("disableTouch").style.display = "block";}, 500);
+            setTimeout(() => {document.getElementById("red2").style.display = "block";}, 500);
+            setTimeout(() => {document.getElementById("red2").style.webkitAnimation = "blink 0.5s ease-in-out infinite";}, 500);
             setTimeout(() => {document.getElementById("apsaugaIsjungta").style.display = "none";}, 500);
             setTimeout(() => {document.getElementById("unlock").style.border = "5px solid red";}, 500);
             setTimeout(() => {document.getElementById("unlock").style.webkitAnimation = "blink 0.5s ease-in-out infinite";}, 500);
@@ -120,6 +124,8 @@
             setTimeout(() => {document.getElementById("exclamation").style.display = "none";}, 30500);
             setTimeout(() => {document.getElementById("disableTouch").style.display = "none";}, 30500);
             setTimeout(() => {document.getElementById("safe").style.backgroundColor = "white";}, 30500);
+            setTimeout(() => {document.getElementById("red2").style.display = "none";}, 30500);
+            setTimeout(() => {document.getElementById("red2").style.webkitAnimation = "none";}, 30500);
         }
         function alarmOn() {
             document.getElementById("black").style.opacity = "0";
@@ -132,20 +138,20 @@
             setTimeout(() => {document.getElementById("sirena").style.opacity = "0";
             document.getElementById("apsaugaIsjungta").style.display = "none";
             document.getElementById("apsaugaIjungiama").style.display = "block";
-            document.getElementById("ijungimas").style.webkitAnimation = "blink 1s ease-in-out infinite";}, 4500);
+            document.getElementById("ijungimas").style.webkitAnimation = "blink 1.5s ease-in-out infinite";}, 4500);
             setTimeout(() => {document.getElementById('countdown').play();}, 4500);
+            setTimeout(() => {document.getElementById('red').style.width = "95%";}, 4500);
             setTimeout(() => {document.getElementById("sirena").style.display = "none";}, 5000);
             setTimeout(() => {document.getElementById('10sec').play();}, 24000);
-            setTimeout(() => {document.getElementById("ijungimas").style.webkitAnimation = "blink 0.5s ease-in-out infinite";}, 24500);
-            setTimeout(() => {document.getElementById("ijungimas").style.webkitAnimation = "blink 0.25s ease-in-out infinite";}, 30700);
-            setTimeout(() => {document.getElementById("ijungimas").style.webkitAnimation = "none";}, 33500);
             setTimeout(() => {document.getElementById("apsaugaIjungta").style.display = "block";}, 35500);
             setTimeout(() => {document.getElementById("apsaugaIjungiama").style.display = "none";}, 35500);
             setTimeout(() => {document.getElementById('apsaugaOn').play();}, 33500);
             setTimeout(() => {document.getElementById("menu").style.left = "-100%";}, 35000);
             setTimeout(() => {document.getElementById("disableTouch").style.display = "none";}, 35000);
             setTimeout(() => {document.getElementById("safe").style.backgroundColor = "rgba(27,151,208,255)";}, 35500);
+            setTimeout(() => {document.getElementById("red").style.backgroundColor = "rgba(27,151,208,255)";}, 35500);
             setTimeout(() => {document.getElementById("atvyko").style.display = "block";}, 35500);
+            setTimeout(() => {document.getElementById("ijungimas").style.webkitAnimation = "none";}, 35500);
             setTimeout(() => {document.getElementById("test1").style.display = "none";}, 35500);
             setTimeout(() => {document.getElementById("test2").style.display = "none";}, 35500);
             setTimeout(() => {document.getElementById("pinButton").style.display = "none";}, 35500);
@@ -160,11 +166,13 @@
             setTimeout(() => {document.getElementById("waiting").style.display = "block";}, 4500);
             setTimeout(() => {document.getElementById("waiting").style.opacity = "1";}, 4550);
             setTimeout(() => {document.getElementById("isjungimas2").style.display = "flex";}, 4500);
-            setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "blink 1s ease-in-out infinite";}, 4500);
-            setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "blink 0.5s ease-in-out infinite";}, 24500);
-            setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "blink 0.25s ease-in-out infinite";}, 30700);
+            setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "blink 1.5s ease-in-out infinite";}, 4500);
+            setTimeout(() => {document.getElementById("red").style.backgroundColor = "red";}, 4500);
+            setTimeout(() => {document.getElementById("red").style.width = "0";}, 4500);
             setTimeout(() => {document.getElementById('10sec').play();}, 24000);
             setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "none";}, 34000);
+            setTimeout(() => {document.getElementById("red2").style.display = "block";}, 34500);
+            setTimeout(() => {document.getElementById("red2").style.webkitAnimation = "blink 0.5s ease-in-out infinite";}, 34500);
             setTimeout(() => {document.getElementById('siren').play();}, 34500);
             setTimeout(() => {document.getElementById("apsaugaIjungta").style.display = "none";}, 34500);
             setTimeout(() => {document.getElementById("waiting").style.webkitAnimation = "blink 1s ease-in-out infinite";}, 34500);
@@ -182,6 +190,8 @@
             document.getElementById("sirenaVeikia").style.display = "none";
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
+            document.getElementById("red").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("apsaugaIjungta").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
@@ -202,6 +212,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -220,6 +231,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -238,6 +250,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -256,6 +269,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -273,6 +287,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -290,6 +305,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -307,6 +323,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -324,6 +341,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -341,6 +359,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -358,6 +377,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -375,6 +395,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -392,6 +413,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -409,6 +431,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -426,6 +449,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -443,6 +467,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -460,6 +485,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -477,6 +503,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -494,6 +521,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -511,6 +539,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -528,6 +557,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -545,6 +575,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -562,6 +593,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -579,6 +611,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -596,6 +629,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -613,6 +647,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -630,6 +665,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -647,6 +683,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -664,6 +701,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -681,6 +719,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";
@@ -698,6 +737,7 @@
             document.getElementById("jutikliaiOk").style.display = "block";
             document.getElementById("apsaugaIsjungta").style.display = "block";
             document.getElementById("apsaugaIjungta").style.display = "none";
+            document.getElementById("red2").style.display = "none";
             document.getElementById("unlock2").style.border = "5px solid black";
             document.getElementById("unlock2").style.webkitAnimation = "none";
             document.getElementById("exclamation").style.display = "none";

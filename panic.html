@@ -12,17 +12,6 @@
 </head>
 <body style="display: flex; justify-content: center; align-items: center; height: 100vh;" id="body">
     <style>
-        @keyframes background{
-            0%{
-                background-color: white;
-            }
-            50%{
-                background-color: rgba(27,151,208,255);
-            }
-            100%{
-                background-color: white;
-            }
-        }
         @keyframes background2{
             0%{
                 opacity: 1;
@@ -41,9 +30,12 @@
     <img src="panic.png" alt="PANIKA" style="width: 100%; transition: 0.5s;" id="panic" onclick="panic()">
     <img src="alarm.png" alt="PANIKA" style="width: 100%; transition: 0.5s; display: none; opacity: 0; border-radius: 30px;" id="panic2" onclick="panicSound()">
     <img src="exclamation-mark.png" alt="SIRENA" style="width: 300px; height: 300px; transition: 0.5s; display: none; opacity: 0; border-radius: 30px; position: absolute; z-index: 1;" id="siren">
+    <div style="width: 0; height: 10px; background-color: red; position: absolute; left: 2.5%; bottom: 230px; border-radius: 15px; transition: 6s width linear;" id="red2"></div>
     <p style="font-family: 'Poppins', sans-serif; position: absolute; bottom: 100px; transition: 0.5s; opacity: 0; display: none;" id="p1">Sirena skambės 30 sekundžių.</p>
     <p style="font-family: 'Poppins', sans-serif; position: absolute; bottom: 60px; color: red; transition: 0.5s; opacity: 0; display: none;" id="p2">Sirenai veikiant jos sustabdyti negalima!</p>
     <p style="font-family: 'Poppins', sans-serif; position: absolute; bottom: 20px; color: rgba(27,151,208,255); transition: 0.5s; opacity: 0; display: none;" id="p3" onclick="sirenClose()">Atšaukti</p>
+    <p style="font-family: 'Poppins', sans-serif; position: absolute; bottom: 20px; color: rgba(27,151,208,255); transition: 0.5s; opacity: 0; display: none;" id="help" onclick="help()">Iškviesti apsaugą</p>
+    <p style="font-family: 'Poppins', sans-serif; position: absolute; bottom: 20px; color: darkseagreen; transition: 0.5s; opacity: 0; display: none;" id="helpConf">Apsauga iškviesta.</p>
     <div style="position: absolute; width: 310px; height: 310px; border-radius: 100%; background-color: red; transition: 0.5s; opacity: 0; display: none;" id="red"></div>
     <script>
         function panic() {
@@ -60,8 +52,7 @@
         }
         function panicSound() {
             document.getElementById('panicSound').play();
-            document.getElementById('body').style.webkitAnimation = "background 1s ease-in-out infinite";
-            setTimeout(() => {document.getElementById('body').style.webkitAnimation = "none";}, 6000);
+            document.getElementById('red2').style.width = "95%";
             setTimeout(() => {document.getElementById('panic2').style.opacity = "0";}, 6000);
             setTimeout(() => {document.getElementById('panic2').style.display = "none";}, 6500);
             document.getElementById('p1').style.opacity = "0";
@@ -76,15 +67,24 @@
             setTimeout(() => {document.getElementById('red').style.opacity = "1";}, 6550);
             setTimeout(() => {document.getElementById('siren2').play();}, 6600);
             setTimeout(() => {document.getElementById('red').style.webkitAnimation = "background2 0.5s ease-in-out infinite";}, 6600);
+            setTimeout(() => {document.getElementById('red2').style.webkitAnimation = "background2 0.5s ease-in-out infinite";}, 6600);
+            setTimeout(() => {document.getElementById('help').style.display = "block";}, 6600);
+            setTimeout(() => {document.getElementById('help').style.opacity = "1";}, 6650);
             setTimeout(() => {document.getElementById('siren2').pause();}, 36000);
             setTimeout(() => {document.getElementById('red').style.webkitAnimation = "none";}, 36000);
             setTimeout(() => {document.getElementById('siren').style.opacity = "0";}, 36000);
             setTimeout(() => {document.getElementById('siren').style.display = "none";}, 36500);
             setTimeout(() => {document.getElementById('red').style.opacity = "0";}, 36000);
             setTimeout(() => {document.getElementById('red').style.display = "none";}, 36500);
+            setTimeout(() => {document.getElementById('red2').style.webkitAnimation = "none";}, 36000);
+            setTimeout(() => {document.getElementById('red2').style.display = "none";}, 36000);
             setTimeout(() => {document.getElementById('panic').style.display = "block";}, 36500);
             setTimeout(() => {document.getElementById('panic').style.opacity = "1";}, 36550);
             setTimeout(() => {document.getElementById('siren2').currentTime = 0;}, 36100);
+            setTimeout(() => {document.getElementById('help').style.opacity = "0";}, 36000);
+            setTimeout(() => {document.getElementById('help').style.display = "none";}, 36500);
+            setTimeout(() => {document.getElementById('helpConf').style.opacity = "0";}, 36000);
+            setTimeout(() => {location.replace("panic.html");}, 37000);
         }
         function sirenClose() {
             document.getElementById('panic2').style.opacity = "0";
@@ -97,6 +97,12 @@
             setTimeout(() => {document.getElementById('p3').style.display = "none";}, 500);
             setTimeout(() => {document.getElementById('panic').style.display = "block";}, 500);
             setTimeout(() => {document.getElementById('panic').style.opacity = "1";}, 550);
+        }
+        function help() {
+            document.getElementById('help').style.opacity = "0";
+            setTimeout(() => {document.getElementById('help').style.display = "none";}, 500);
+            setTimeout(() => {document.getElementById('helpConf').style.display = "block";}, 2500);
+            setTimeout(() => {document.getElementById('helpConf').style.opacity = "1";}, 2550);
         }
     </script>
 </body>
