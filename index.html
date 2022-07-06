@@ -35,6 +35,7 @@
     <audio src="ding.mp3" id="ding"></audio>
     <audio src="smoke.mp3" id="smoke"></audio>
     <audio src="mazeja.mp3" id="mazeja"></audio>
+    <audio src="call.mp3" id="call"></audio>
     <img src="alarm.png" alt="SIRENA" style="width: 50px; position: absolute; top: 0; right: 0; transition: 0.5s; z-index: 1;" id="sirena" onclick="siren()">
     <img src="off.jpg" style="width: 40px; position: absolute; top: 5px; right: 5px; transition: 0.5s; display: none;" id="atvyko" onclick="alarmOff()">
     <img src="menu.png" alt="Meniu" style="width: 40px; position: absolute; top: 10px; left: 10px; z-index: 1;" onclick="menuOpen()">
@@ -171,16 +172,17 @@
             setTimeout(() => {document.getElementById("red").style.width = "0";}, 4500);
             setTimeout(() => {document.getElementById('10sec').play();}, 24000);
             setTimeout(() => {document.getElementById("isjungimas2").style.webkitAnimation = "none";}, 34000);
-            setTimeout(() => {document.getElementById("red2").style.display = "block";}, 34500);
-            setTimeout(() => {document.getElementById("red2").style.webkitAnimation = "blink 0.5s ease-in-out infinite";}, 34500);
-            setTimeout(() => {document.getElementById('siren').play();}, 34500);
-            setTimeout(() => {document.getElementById("apsaugaIjungta").style.display = "none";}, 34500);
-            setTimeout(() => {document.getElementById("waiting").style.webkitAnimation = "blink 1s ease-in-out infinite";}, 34500);
-            setTimeout(() => {document.getElementById("sirenaVeikia").style.display = "block";}, 34500);
-            setTimeout(() => {document.getElementById("safe").style.backgroundColor = "red";}, 34500);
-            setTimeout(() => {document.getElementById("unlock2").style.border = "5px solid red";}, 34500);
-            setTimeout(() => {document.getElementById("unlock2").style.webkitAnimation = "blink 0.5s ease-in-out infinite";}, 34500);
-            setTimeout(() => {document.getElementById("exclamation").style.display = "flex";}, 34500);
+            setTimeout(() => {document.getElementById("red2").style.display = "block";}, 37500);
+            setTimeout(() => {document.getElementById("red2").style.webkitAnimation = "blink 0.5s ease-in-out infinite";}, 37500);
+            setTimeout(() => {document.getElementById('siren').play();}, 37500);
+            setTimeout(() => {document.getElementById('call').play();}, 34500);
+            setTimeout(() => {document.getElementById("apsaugaIjungta").style.display = "none";}, 37500);
+            setTimeout(() => {document.getElementById("waiting").style.webkitAnimation = "blink 1s ease-in-out infinite";}, 37500);
+            setTimeout(() => {document.getElementById("sirenaVeikia").style.display = "block";}, 37500);
+            setTimeout(() => {document.getElementById("safe").style.backgroundColor = "red";}, 37500);
+            setTimeout(() => {document.getElementById("unlock2").style.border = "5px solid red";}, 37500);
+            setTimeout(() => {document.getElementById("unlock2").style.webkitAnimation = "blink 0.5s ease-in-out infinite";}, 37500);
+            setTimeout(() => {document.getElementById("exclamation").style.display = "flex";}, 37500);
         }
         function shutOff() {
             document.getElementById('apsaugaOff').play();
