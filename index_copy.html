@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="favicon.ico">
+    <title>ETO+</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body id="body" onload="loadFunction()">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: 0.3s;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 400;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            cursor: default;
+        }
+        body{
+            background-color: rgba(251,251,253,255);
+            height: 100vh;
+        }
+        b{
+            font-weight: 600;
+        }
+        button:active{
+            transform: scale(0.9);
+        }
+        button{
+            cursor: pointer;
+        }
+        button i{
+            cursor: pointer;
+        }
+        button p{
+            cursor: pointer;
+        }
+        button span{
+            cursor: pointer;
+        }
+        #statusBar{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 17px;
+            background-color: #9EBDFF;
+            box-shadow: 0 0 15px #9EBDFF;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+        }
+        #screen{
+            width: 100%;
+            height: 90%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #arm{
+            width: 25%;
+            height: 0;
+            padding-top: 12.5%;
+            padding-bottom: 12.5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 25px;
+            color: #9EBDFF;
+            border: 5px solid #9EBDFF;
+            border-radius: 100%;
+        }
+        #arm i{
+            font-size: 100px;
+            margin-bottom: 25px;
+        }
+        #arm p {
+            font-size: 30px;
+        }
+        #disarm{
+            width: 25%;
+            height: 0;
+            padding-top: 12.5%;
+            padding-bottom: 12.5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 25px;
+            color: darkgrey;
+            border: 5px solid darkgrey;
+            border-radius: 100%;
+        }
+        #disarm i{
+            font-size: 100px;
+            margin-bottom: 25px;
+        }
+        #disarm p {
+            font-size: 30px;
+        }
+        #panicBtn{
+            width: 50%;
+            height: 70px;
+            background-color: red;
+            border-radius: 100px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            position: fixed;
+            bottom: 30px;
+            left: 25%;
+            box-shadow: 0 0 5px red;
+            border: none;
+            z-index: 3;
+        }
+        #panicBtn i{
+            margin-right: 7px;
+        }
+        #panicScreen{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            bottom: -110%;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            background-color: rgba(251,251,253,255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 50px;
+            box-shadow: 0 0 15px red;
+        }
+        #panicScreen i{
+            font-size: 150px;
+            color: red;
+            border-radius: 100%;
+            background-color: rgba(251,251,253,255);
+            box-shadow: 0 0 15px rgba(251,251,253,255);
+            z-index: 5;
+        }
+        #panicScreenButton{
+            width: 50%;
+            height: 70px;
+            background-color: red;
+            border-radius: 100px;
+            color: white;
+            font-size: 25px;
+            position: absolute;
+            bottom: 30px;
+            box-shadow: 0 0 5px red;
+            border: none;
+            z-index: 5;
+        }
+        #panicScreenButton i{
+            font-size: 20px;
+            color: white;
+            background-color: transparent;
+            box-shadow: none;
+        }
+        @keyframes dotsOther{
+            0%{
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            50%{
+                width: 500px;
+                height: 500px;
+                opacity: 0;
+            }
+            100%{
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+        }
+        @keyframes blinkPanic{
+            0%{
+                background-color: #9EBDFF;
+                box-shadow: #9EBDFF;
+            }
+            50%{
+                background-color: red;
+                box-shadow: red;
+            }
+            100%{
+                background-color: #9EBDFF;
+                box-shadow: #9EBDFF;
+            }
+        }
+        @keyframes spin{
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        #panicLoader{
+            width: 150px;
+            height: 150px;
+            border-radius: 100%;
+            border: 5px solid darkgrey;
+            border-top: 5px solid #9EBDFF;
+            border-left: 5px solid #9EBDFF;
+            animation: spin 1s linear infinite;
+            opacity: 0;
+            display: none;
+        }
+    </style>
+    <audio src="siren.mp3" id="siren"></audio>
+    <audio src="panicSound.mp3" id="panicSound"></audio>
+    <audio src="iseiti.mp3" id="iseiti"></audio>
+    <audio src="countdown.mp3" id="countdown"></audio>
+    <audio src="apsaugaOn.mp3" id="apsaugaOn"></audio>
+    <audio src="ieiti.mp3" id="ieiti"></audio>
+    <audio src="apsaugaOff.mp3" id="apsaugaOff"></audio>
+    <audio src="ding.mp3" id="ding"></audio>
+    <audio src="smoke.mp3" id="smoke"></audio>
+    <audio src="mazeja.mp3" id="mazeja"></audio>
+    <audio src="call.mp3" id="call"></audio>
+
+    <div id="statusBar">
+        <p><i class="fa-solid fa-tower-broadcast"></i> OK</p>
+        <p id="statusReady">Ready</p>
+        <p id="statusPanic" style="display: none;">PANIC</p>
+        <div id="time"></div>
+    </div>
+    <div id="screen">
+        <div id="arm"><i class="fa-solid fa-unlock-keyhole"></i> <p>Disarmed | <b>Stay</b></p></div>
+        <div id="disarm"><i class="fa-solid fa-shield-halved"></i> <p>Armed | <b>Away</b></p></div>
+    </div>
+    <button id="panicBtn" ontouchstart onclick="panic()"><i class="fa-solid fa-circle-exclamation"></i> <p>PANIC</p></button>
+
+    <div id="panicScreen">
+        <div style="position: absolute; top: 0; left: 0; display: none;" id="sirenConfirmation"></div>
+        <i id="panicExclamation" class="fa-solid fa-circle-exclamation"></i>
+        <div id="pulse1" style="position: absolute; width: 0; height: 0; background-color: red; box-shadow: 0 0 50px white; border-radius: 100%; margin-top: -110px; opacity: 0; z-index: -1;"></div>
+        <div id="pulse2" style="position: absolute; width: 0; height: 0; background-color: red; box-shadow: 0 0 50px white; border-radius: 100%; margin-top: -110px; opacity: 0; z-index: -1;"></div>
+        <div id="pulse3" style="position: absolute; width: 0; height: 0; background-color: red; box-shadow: 0 0 50px white; border-radius: 100%; margin-top: -110px; opacity: 0; z-index: -1;"></div>
+        <div id="pulse4" style="position: absolute; width: 0; height: 0; background-color: red; box-shadow: 0 0 50px white; border-radius: 100%; margin-top: -110px; opacity: 0; z-index: -1;"></div>
+        <div id="pulse5" style="position: absolute; width: 0; height: 0; background-color: red; box-shadow: 0 0 50px white; border-radius: 100%; margin-top: -110px; opacity: 0; z-index: -1;"></div>
+        <p id="PANICtext" style="margin-top: 20px; color: red; font-size: 30px; text-shadow: 0 0 5px rgba(251,251,253,255); z-index: 5;">PANIC</p>
+        <p id="panicText" style="margin-top: 30px; font-size: 17px; text-shadow: 0 0 5px rgba(251,251,253,255);">Siren will start in <span id="countdownPanic" style="font-weight: 600;">5 seconds</span> and play until you stop it.</p>
+        <button id="panicScreenButton" ontouchstart onclick="panicCancel()"><i class="fa-regular fa-circle-xmark"></i> <span id="cancelSirenSpan">CANCEL</span></button>
+        <div id="panicLoader"></div>
+        <p id="panicText2" style="margin-top: 30px; font-size: 17px; text-shadow: 0 0 5px rgba(251,251,253,255); opacity: 0; display: none;">Cancelling PANIC...</p>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a11707644f.js" crossorigin="anonymous"></script>
+    <script>
+         function checkTime(i) {
+            if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+        }
+
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            // add a zero in front of numbers<10
+            m = checkTime(m);
+            document.getElementById('time').innerHTML = h + ":" + m;
+                t = setTimeout(function() {
+            startTime()
+            }, 500);
+        }
+        startTime();
+
+        function panic() {
+            document.getElementById("panicScreen").style.bottom = "0";
+            document.getElementById("sirenConfirmation").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("countdownPanic").innerHTML = "4 seconds";
+            }, 1000);
+            setTimeout(() => {
+                document.getElementById("countdownPanic").innerHTML = "3 seconds";
+            }, 2000);
+            setTimeout(() => {
+                document.getElementById("countdownPanic").innerHTML = "2 seconds";
+            }, 3000);
+            setTimeout(() => {
+                document.getElementById("countdownPanic").innerHTML = "1 second";
+            }, 4000);
+            setTimeout(() => {
+                checkPanic();
+            }, 5000);
+        }
+        function checkPanic() {
+        document.getElementById("countdownPanic").innerHTML = "0 seconds";
+                if (document.getElementById("sirenConfirmation").style.display == "block") {
+                    panicConfirm();
+                    document.getElementById("cancelSirenSpan").innerHTML = "STOP";
+                }
+                else {
+
+                }
+            }
+        function panicCancel() {
+            document.getElementById("statusReady").style.display = "block";
+            document.getElementById("statusPanic").style.display = "none";
+            document.getElementById("pulse1").style.animation = "none";
+            document.getElementById("pulse2").style.animation = "none";
+            document.getElementById("pulse3").style.animation = "none";
+            document.getElementById("pulse4").style.animation = "none";
+            document.getElementById("pulse5").style.animation = "none";
+            document.getElementById("statusBar").style.animation = "none";
+            document.getElementById("panicExclamation").style.opacity = "0";
+            document.getElementById("PANICtext").style.opacity = "0";
+            document.getElementById("panicText").style.opacity = "0";
+            document.getElementById("panicScreenButton").style.bottom = "-100px";
+            document.getElementById("sirenConfirmation").style.display = "none";
+            document.getElementById("siren").pause();
+            setTimeout(() => {
+                document.getElementById("panicExclamation").style.display = "none";
+                document.getElementById("PANICtext").style.display = "none";
+                document.getElementById("panicText").style.display = "none";
+                document.getElementById("panicLoader").style.display = "block";
+                document.getElementById("panicText2").style.display = "block";
+            }, 300);
+            setTimeout(() => {
+                document.getElementById("panicLoader").style.opacity = "1";
+                document.getElementById("panicText2").style.opacity = "1";
+            }, 310);
+            setTimeout(() => {
+                document.getElementById("panicScreen").style.bottom = "-110%";
+            }, 5000);
+            setTimeout(() => {
+                document.getElementById("cancelSirenSpan").innerHTML = "CANCEL";
+                document.getElementById("panicText").style.opacity = "1";
+                document.getElementById("countdownPanic").innerHTML = "5 seconds";
+                document.getElementById("panicExclamation").style.opacity = "1";
+                document.getElementById("PANICtext").style.opacity = "1";
+                document.getElementById("panicText").style.opacity = "1";
+                document.getElementById("panicScreenButton").style.bottom = "30px";
+                document.getElementById("panicExclamation").style.display = "block";
+                document.getElementById("PANICtext").style.display = "block";
+                document.getElementById("panicText").style.display = "block";
+                document.getElementById("panicLoader").style.display = "none";
+                document.getElementById("panicText2").style.display = "none";
+                document.getElementById("panicLoader").style.opacity = "0";
+                document.getElementById("panicText2").style.opacity = "0";
+                document.getElementById("panicText2").innerHTML = "Cancelling PANIC...";
+            }, 5300);
+        }
+        function panicConfirm() {
+            document.getElementById('siren').currentTime = 0;
+            document.getElementById("siren").play();
+            document.getElementById("statusReady").style.display = "none";
+            document.getElementById("statusPanic").style.display = "block";
+            document.getElementById("panicText").style.opacity = "0";
+            document.getElementById("pulse1").style.animation = "dotsOther 2s linear infinite";
+            document.getElementById("pulse2").style.animation = "dotsOther 2s linear infinite 0.4s";
+            document.getElementById("pulse3").style.animation = "dotsOther 2s linear infinite 0.8s";
+            document.getElementById("pulse4").style.animation = "dotsOther 2s linear infinite 1.2s";
+            document.getElementById("pulse5").style.animation = "dotsOther 2s linear infinite 1.6s";
+            document.getElementById("statusBar").style.animation = "blinkPanic 0.3s linear infinite";
+            document.getElementById("panicText2").innerHTML = "Stopping PANIC...";
+        }
+
+        document.getElementById("siren").onended = function() {
+            document.getElementById('siren').currentTime = 0;
+            document.getElementById("siren").play();
+        }
+    </script>
+</body>
+</html>
