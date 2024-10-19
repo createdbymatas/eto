@@ -74,7 +74,7 @@
             justify-content: space-around;
             align-items: center;
         }
-        #arm{
+        #disarm{
             width: 25%;
             height: 0;
             padding-top: 12.5%;
@@ -87,15 +87,38 @@
             color: #9EBDFF;
             border: 5px solid #9EBDFF;
             border-radius: 100%;
+            cursor: pointer;
+            pointer-events: none;
         }
-        #arm i{
+        #disarm i{
             font-size: 100px;
             margin-bottom: 25px;
+            transition: none;
+            cursor: pointer;
         }
-        #arm p {
+        #disarm p {
             font-size: 30px;
+            transition: none;
+            cursor: pointer;
         }
-        #disarm{
+        #disarm b{
+            transition: none;
+            cursor: pointer;
+        }
+        #disarm h1 {
+            display: none;
+            font-size: 20px;
+            text-align: center;
+        }
+        #disarm h1 span{
+            font-size: 50px;
+            font-weight: 600;
+            transition: none;
+        }
+        #disarm:active{
+            transform: scale(0.9);
+        }
+        #arm{
             width: 25%;
             height: 0;
             padding-top: 12.5%;
@@ -108,13 +131,25 @@
             color: darkgrey;
             border: 5px solid darkgrey;
             border-radius: 100%;
+            cursor: pointer;
         }
-        #disarm i{
+        #arm i{
             font-size: 100px;
             margin-bottom: 25px;
+            transition: none;
+            cursor: pointer;
         }
-        #disarm p {
+        #arm p {
             font-size: 30px;
+            transition: none;
+            cursor: pointer;
+        }
+        #arm b{
+            transition: none;
+            cursor: pointer;
+        }
+        #arm:active{
+            transform: scale(0.9);
         }
         #panicBtn{
             width: 50%;
@@ -218,6 +253,17 @@
                 transform: rotate(360deg);
             }
         }
+        @keyframes blinkBorder{
+            0%{
+                border-color: #9EBDFF;
+            }
+            50%{
+                border-color: transparent;
+            }
+            100%{
+                border-color: #9EBDFF;
+            }
+        }
         #panicLoader{
             width: 150px;
             height: 150px;
@@ -230,8 +276,13 @@
             display: none;
         }
     </style>
+    <audio src="click.mp3" id="click"></audio>
+    <audio src="panic.mp3" id="panic"></audio>
     <audio src="siren.mp3" id="siren"></audio>
-    <audio src="panicSound.mp3" id="panicSound"></audio>
+    <audio src="exitDelay.mp3" id="exitDelay"></audio>
+    <audio src="countdown.mp3" id="countdown"></audio>
+    <audio src="armedAway.mp3" id="armedAway"></audio>
+    <!-- <audio src="panicSound.mp3" id="panicSound"></audio>
     <audio src="iseiti.mp3" id="iseiti"></audio>
     <audio src="countdown.mp3" id="countdown"></audio>
     <audio src="apsaugaOn.mp3" id="apsaugaOn"></audio>
@@ -240,17 +291,26 @@
     <audio src="ding.mp3" id="ding"></audio>
     <audio src="smoke.mp3" id="smoke"></audio>
     <audio src="mazeja.mp3" id="mazeja"></audio>
-    <audio src="call.mp3" id="call"></audio>
+    <audio src="call.mp3" id="call"></audio> -->
 
     <div id="statusBar">
         <p><i class="fa-solid fa-tower-broadcast"></i> OK</p>
-        <p id="statusReady">Ready</p>
+        <p id="statusDisarmed">Disarmed | <b>Stay</b></p>
         <p id="statusPanic" style="display: none;">PANIC</p>
+        <p id="statusArming" style="display: none;">Arming...</p>
+        <p id="statusArmed" style="display: none;">Armed | <b>Away</b></p>
         <div id="time"></div>
     </div>
     <div id="screen">
-        <div id="arm"><i class="fa-solid fa-unlock-keyhole"></i> <p>Disarmed | <b>Stay</b></p></div>
-        <div id="disarm"><i class="fa-solid fa-shield-halved"></i> <p>Armed | <b>Away</b></p></div>
+        <div id="disarm">
+            <i id="disarmI" class="fa-solid fa-unlock-keyhole"></i>
+            <p id="disarmP">Disarmed | <b>Stay</b></p>
+            <h1 id="disarmH1"><span id="armCountdown">30 seconds</span><br>remaining...</h1>
+        </div>
+        <div id="arm" ontouchstart onclick="arm()">
+            <i class="fa-solid fa-shield-halved"></i>
+            <p>Armed | <b>Away</b></p>
+        </div>
     </div>
     <button id="panicBtn" ontouchstart onclick="panic()"><i class="fa-solid fa-circle-exclamation"></i> <p>PANIC</p></button>
 
@@ -291,7 +351,159 @@
         }
         startTime();
 
+
+
+
+        function arm() {
+            document.getElementById('click').currentTime = 0;
+            document.getElementById("click").play();
+            document.getElementById("arm").style.pointerEvents = "none";
+            document.getElementById("panicBtn").style.pointerEvents = "none";
+            setTimeout(() => {
+                document.getElementById("arm").style.color = "#9EBDFF";
+                document.getElementById("arm").style.borderColor = "#9EBDFF";
+                document.getElementById("disarm").style.opacity = "0";
+                document.getElementById("panicBtn").style.bottom = "-100px";
+                document.getElementById("statusDisarmed").style.display = "none";
+                document.getElementById("statusArming").style.display = "block";
+                document.getElementById('exitDelay').currentTime = 0;
+                document.getElementById("exitDelay").play();
+            }, 500); 
+            setTimeout(() => {
+                document.getElementById("disarm").style.borderColor = "transparent";
+                document.getElementById("disarm").style.color = "black";
+                document.getElementById("disarmI").style.display = "none";
+                document.getElementById("disarmP").style.display = "none";
+                document.getElementById("disarmH1").style.display = "block";
+            }, 800);   
+        }
+
+        document.getElementById("exitDelay").onended = function() {
+            document.getElementById('countdown').currentTime = 0;
+            document.getElementById("countdown").play();
+            document.getElementById("disarm").style.opacity = "1";
+            document.getElementById("arm").style.animation = "blinkBorder 2s linear infinite";
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "29 seconds";
+            }, 1000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "28 seconds";
+            }, 2000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "27 seconds";
+            }, 3000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "26 seconds";
+            }, 4000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "25 seconds";
+            }, 5000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "24 seconds";
+            }, 6000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "23 seconds";
+            }, 7000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "22 seconds";
+            }, 8000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "21 seconds";
+            }, 9000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "20 seconds";
+            }, 10000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "19 seconds";
+            }, 11000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "18 seconds";
+            }, 12000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "17 seconds";
+            }, 13000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "16 seconds";
+            }, 14000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "15 seconds";
+            }, 15000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "14 seconds";
+            }, 16000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "13 seconds";
+            }, 17000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "12 seconds";
+            }, 18000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "11 seconds";
+            }, 19000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "10 seconds";
+                document.getElementById("armCountdown").style.color = "red";
+                document.getElementById("arm").style.animation = "blinkBorder 1s linear infinite";
+            }, 20000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "9 seconds";
+            }, 21000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "8 seconds";
+            }, 22000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "7 seconds";
+            }, 23000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "6 seconds";
+            }, 24000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "5 seconds";
+            }, 25000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "4 seconds";
+            }, 26000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "3 seconds";
+            }, 27000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "2 seconds";
+            }, 28000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "1 second";
+            }, 29000);
+            setTimeout(() => {
+                document.getElementById("armCountdown").innerHTML = "0 seconds";
+            }, 30000);
+            setTimeout(() => {
+                document.getElementById('armedAway').currentTime = 0;
+                document.getElementById("armedAway").play();
+                document.getElementById("disarm").style.opacity = "0";
+                document.getElementById("statusArmed").style.display = "block";
+                document.getElementById("statusArming").style.display = "none";
+                document.getElementById("arm").style.animation = "none";
+            }, 31000);
+            setTimeout(() => {
+                document.getElementById("disarm").style.display = "flex";
+                document.getElementById("disarm").style.borderColor = "darkgrey";
+                document.getElementById("disarm").style.color = "darkgrey";
+                document.getElementById("disarmI").style.display = "block";
+                document.getElementById("disarmP").style.display = "block";
+                document.getElementById("disarmH1").style.display = "none";
+            }, 31300);
+            setTimeout(() => {
+                document.getElementById("disarm").style.opacity = "1";
+                document.getElementById("disarm").style.pointerEvents = "all";
+            }, 31310);
+            
+        }
+
+
+
+
         function panic() {
+            document.getElementById('click').currentTime = 0;
+            document.getElementById("click").play();
             document.getElementById("panicScreen").style.bottom = "0";
             document.getElementById("sirenConfirmation").style.display = "block";
             setTimeout(() => {
@@ -321,7 +533,9 @@
                 }
             }
         function panicCancel() {
-            document.getElementById("statusReady").style.display = "block";
+            document.getElementById('click').currentTime = 0;
+            document.getElementById("click").play();
+            document.getElementById("statusDisarmed").style.display = "block";
             document.getElementById("statusPanic").style.display = "none";
             document.getElementById("pulse1").style.animation = "none";
             document.getElementById("pulse2").style.animation = "none";
@@ -368,9 +582,9 @@
             }, 5300);
         }
         function panicConfirm() {
-            document.getElementById('siren').currentTime = 0;
-            document.getElementById("siren").play();
-            document.getElementById("statusReady").style.display = "none";
+            document.getElementById('panic').currentTime = 0;
+            document.getElementById("panic").play();
+            document.getElementById("statusDisarmed").style.display = "none";
             document.getElementById("statusPanic").style.display = "block";
             document.getElementById("panicText").style.opacity = "0";
             document.getElementById("pulse1").style.animation = "dotsOther 2s linear infinite";
@@ -380,6 +594,11 @@
             document.getElementById("pulse5").style.animation = "dotsOther 2s linear infinite 1.6s";
             document.getElementById("statusBar").style.animation = "blinkPanic 0.3s linear infinite";
             document.getElementById("panicText2").innerHTML = "Stopping PANIC...";
+        }
+
+        document.getElementById("panic").onended = function() {
+            document.getElementById('siren').currentTime = 0;
+            document.getElementById("siren").play();
         }
 
         document.getElementById("siren").onended = function() {
