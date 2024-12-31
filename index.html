@@ -298,13 +298,13 @@
             pointer-events: none;
         }
         #disarm i{
-            font-size: 100px;
+            font-size: 7vw;
             margin-bottom: 25px;
             transition: none;
             cursor: pointer;
         }
         #disarm p {
-            font-size: 30px;
+            font-size: 2.2vw;
             transition: none;
             cursor: pointer;
         }
@@ -314,11 +314,12 @@
         }
         #disarm h1 {
             display: none;
-            font-size: 20px;
+            font-size: 1.6vw;
             text-align: center;
+            transition: none;
         }
         #disarm h1 span{
-            font-size: 50px;
+            font-size: 3.2vw;
             font-weight: 600;
             transition: none;
         }
@@ -341,13 +342,13 @@
             cursor: pointer;
         }
         #arm i{
-            font-size: 100px;
+            font-size: 7vw;
             margin-bottom: 25px;
             transition: none;
             cursor: pointer;
         }
         #arm p {
-            font-size: 30px;
+            font-size: 2.2vw;
             transition: none;
             cursor: pointer;
         }
@@ -357,11 +358,12 @@
         }
         #arm h1 {
             display: none;
-            font-size: 20px;
+            font-size: 1.6vw;
             text-align: center;
+            transition: none;
         }
         #arm h1 span{
-            font-size: 50px;
+            font-size: 3.2vw;
             font-weight: 600;
             transition: none;
         }
@@ -503,7 +505,7 @@
             opacity: 0;
             display: none;
         }
-        @media only screen and (max-width: 1070px){
+        @media only screen and (max-width: 750px){
             body{
                 overflow-y: none;
             }
@@ -599,7 +601,7 @@
             <i id="armI" class="fa-solid fa-shield-halved"></i>
             <p id="armP">Armed | <b>Away</b></p>
             <h1 id="armH1"><span id="disarmCountdown">30 seconds</span><br>remaining...</h1>
-            <h1 id="alarmH1" style="position: absolute; transition: none; margin-top: 20px;"><i class="fa-solid fa-circle-exclamation" style="font-size: 50px;"></i> <span>ALARM</span></h1>
+            <h1 id="alarmH1" style="position: absolute; transition: none; margin-top: 20px;"><i class="fa-solid fa-circle-exclamation" style="font-size: 3.2vw;"></i> <span>ALARM</span></h1>
         </div>
     </div>
     <button id="panicBtn" ontouchstart onclick="panic()"><i class="fa-solid fa-circle-exclamation"></i> <p>PANIC</p></button>
@@ -613,7 +615,7 @@
         <div id="pulse4" style="position: absolute; width: 0; height: 0; background-color: red; box-shadow: 0 0 50px white; border-radius: 100%; margin-top: -110px; opacity: 0; z-index: -1;"></div>
         <div id="pulse5" style="position: absolute; width: 0; height: 0; background-color: red; box-shadow: 0 0 50px white; border-radius: 100%; margin-top: -110px; opacity: 0; z-index: -1;"></div>
         <p id="PANICtext" style="margin-top: 20px; color: red; font-size: 30px; text-shadow: 0 0 5px rgba(251,251,253,255); z-index: 5;">PANIC</p>
-        <p id="panicText" style="margin-top: 30px; font-size: 17px; text-shadow: 0 0 5px rgba(251,251,253,255);">Siren will start in <span id="countdownPanic" style="font-weight: 600;">5 seconds</span> and play until you stop it.</p>
+        <p id="panicText" style="margin-top: 30px; font-size: 17px; text-shadow: 0 0 5px rgba(251,251,253,255);">Siren will begin playing in <span id="countdownPanic" style="font-weight: 600;">5 seconds</span> and can be stopped manually.</p>
         <button id="panicScreenButton" ontouchstart onclick="panicCancel()"><i class="fa-regular fa-circle-xmark"></i> <span id="cancelSirenSpan">CANCEL</span></button>
         <div id="panicLoader"></div>
         <p id="panicText2" style="margin-top: 30px; font-size: 17px; text-shadow: 0 0 5px rgba(251,251,253,255); opacity: 0; display: none;">Cancelling PANIC...</p>
@@ -1122,7 +1124,7 @@
             document.getElementById("click").play();
             inputas = inputas + 1;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1155,7 +1157,7 @@
             document.getElementById("click").play();
             inputas = inputas + 2;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1188,7 +1190,7 @@
             document.getElementById("click").play();
             inputas = inputas + 3;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1221,7 +1223,7 @@
             document.getElementById("click").play();
             inputas = inputas + 4;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1254,7 +1256,7 @@
             document.getElementById("click").play();
             inputas = inputas + 5;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1287,7 +1289,7 @@
             document.getElementById("click").play();
             inputas = inputas + 6;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1320,7 +1322,7 @@
             document.getElementById("click").play();
             inputas = inputas + 7;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1353,7 +1355,7 @@
             document.getElementById("click").play();
             inputas = inputas + 8;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1386,7 +1388,7 @@
             document.getElementById("click").play();
             inputas = inputas + 9;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1419,7 +1421,7 @@
             document.getElementById("click").play();
             inputas = inputas + 0;
             document.getElementById("kodas").value = inputas;
-            document.getElementById("istrynimas").style.color = "#9EBDFF";
+            document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
@@ -1510,6 +1512,8 @@
                     document.getElementById("arm").style.opacity = "1";
                     document.getElementById("arm").style.pointerEvents = "all";
                     document.getElementById("disarm").style.opacity = "1";
+                    document.getElementById("panicBtn").style.bottom = "30px";
+                    document.getElementById("panicBtn").style.pointerEvents = "all";
                 }, 3910);
           }
             else{
