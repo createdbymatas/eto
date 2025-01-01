@@ -632,9 +632,9 @@
         }
 
         function startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
+            let today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
             // add a zero in front of numbers<10
             m = checkTime(m);
             document.getElementById('time').innerHTML = h + ":" + m;
@@ -1005,7 +1005,7 @@
             }, 31000);
         }
         function alarmNow(){
-            if(document.getElementById("statusArmed").style.display == "block")
+            if(document.getElementById("statusArmed").style.display === "block")
             {
                 document.getElementById('alarmingNow').currentTime = 0;
                 document.getElementById('alarmingNow').muted = false;
@@ -1072,7 +1072,7 @@
         }
         function checkPanic() {
         document.getElementById("countdownPanic").innerHTML = "0 seconds";
-                if (document.getElementById("sirenConfirmation").style.display == "block") {
+                if (document.getElementById("sirenConfirmation").style.display === "block") {
                     panicConfirm();
                     document.getElementById("cancelSirenSpan").innerHTML = "STOP";
                 }
@@ -1163,7 +1163,7 @@
 
 
 
-        var inputas = "";
+        let inputas = "";
         function pirmas() {
             document.getElementById('click').currentTime = 0;
             document.getElementById("click").play();
@@ -1171,27 +1171,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length === 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1204,27 +1204,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length === 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1237,27 +1237,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length === 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1270,27 +1270,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length === 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1303,27 +1303,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length === 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1336,27 +1336,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length === 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1369,27 +1369,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length = 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1402,27 +1402,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length === 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1435,27 +1435,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length === 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1468,27 +1468,27 @@
             document.getElementById("kodas").value = inputas;
             document.getElementById("istrynimas").style.color = "black";
             document.getElementById("istrynimas").style.pointerEvents = "all";
-            if(inputas.length == "1")
+            if(inputas.length === 1)
                 {
                     document.getElementById("taskelis1").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "2")
+            else if(inputas.length === 2)
                 {
                     document.getElementById("taskelis2").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "3")
+            else if(inputas.length === 3)
                 {
                     document.getElementById("taskelis3").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "4")
+            else if(inputas.length === 4)
                 {
                     document.getElementById("taskelis4").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "5")
+            else if(inputas.length === 5)
                 {
                     document.getElementById("taskelis5").style.backgroundColor = "#9EBDFF";
             }
-            else if(inputas.length == "6")
+            else if(inputas.length === 6)
                 {
                     document.getElementById("taskelis6").style.backgroundColor = "#9EBDFF";
                     document.getElementById("gerai").click();
@@ -1510,7 +1510,7 @@
         }
         function check(form)
         {
-            if(form.pin.value == "000000")
+            if(form.pin.value === "000000")
                 {
                 document.getElementById("ivestiKoda").style.opacity = "0.3";
                 document.getElementById("istrynimas").style.color = "transparent";
