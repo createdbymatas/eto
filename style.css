@@ -1,0 +1,493 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: 0.3s;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+::-webkit-scrollbar {
+    width: 0;
+}
+body{
+    background-color: rgba(251,251,253,255);
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: none;
+}
+b{
+    font-weight: 600;
+}
+button:active{
+    transform: scale(0.9);
+}
+button{
+    cursor: pointer;
+    touch-action: manipulation;
+}
+button i{
+    cursor: pointer;
+}
+button p{
+    cursor: pointer;
+}
+button span{
+    cursor: pointer;
+}
+
+
+
+#loading{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: rgba(251,251,253,255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: wait;
+}
+#loader{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 5px solid darkgrey;
+    border-top: 5px solid #9EBDFF;
+    border-left: 5px solid #9EBDFF;
+    animation: spin 1s linear infinite;
+}
+#createdByMatas{
+    position: absolute;
+    bottom: 30px;
+    opacity: 0;
+    color: black;
+    text-align: center;
+}
+
+#screenSize{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    background-color: rgba(251,251,253,255);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: not-allowed;
+}
+#screenSizeTekstas1{
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+    cursor: not-allowed;
+    font-weight: 600;
+}
+#screenSizeTekstas2{
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+    cursor: not-allowed;
+}
+#sizeDiv{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: not-allowed;
+}
+#phoneIcon{
+    font-size: 70px;
+    position: absolute;
+    color: black;
+    cursor: not-allowed;
+}
+#xIcon{
+    font-size: 30px;
+    color: red;
+    background-color: rgba(251,251,253,255);
+    border-radius: 100%;
+    margin-top: 35px;
+    z-index: 2;
+    margin-left: 70px;
+    cursor: not-allowed;
+}
+
+#keyboardBackground{
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
+    background-color: rgba(251,251,253,255);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+}
+#ivestiKoda{
+    color: black;
+    font-size: 20px;
+    transition: 0.3s;
+}
+#keypad{
+    width: 260px; 
+    height: 390px; 
+    border-radius: 25px; 
+    border: 2px none; 
+    background-color: transparent; 
+    color: #9EBDFF; 
+    font-size: 25px;
+    margin: 10px auto;
+    margin-top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    transition: 0.3s;
+    overflow: hidden;
+}
+#keypad button{
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    border: none;
+    font-size: 30px;
+    background-color: #9EBDFF;
+    cursor: pointer;
+    transition: 0.15s;
+    color: white;
+}
+#keypad button:active{
+    background-color: #9EBDFF;
+    opacity: 0.5;
+    transform: scale(1);
+}
+#istrynimas:active{
+    opacity: 0.5;
+}
+#keypad input{
+    width: 0;
+    height: 0;
+    display: none;
+}
+.keypadSorting{
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+.buttonLetters{
+    font-size: 10px;
+    margin-bottom: 5px;
+    display: block;
+    transition: 0.01s;
+    cursor: pointer;
+}
+#gerai{
+    pointer-events: none;
+    opacity: 0;
+}
+#taskeliai{
+    width: 80%;
+    height: 30px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#taskeliai div{
+    width: 15px;
+    height: 15px;
+    border: 2px solid #9EBDFF;
+    border-radius: 100%;
+    transition: 0.15s;
+}
+.mygtukas:active{
+    transform: scale(0.9);
+}
+
+
+
+
+
+#statusBar{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 17px;
+    background-color: #9EBDFF;
+    box-shadow: 0 0 15px #9EBDFF;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+}
+#screen{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#disarm{
+    width: 25%;
+    height: 0;
+    padding-top: 12.5%;
+    padding-bottom: 12.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25px;
+    color: #9EBDFF;
+    border: 5px solid #9EBDFF;
+    border-radius: 100%;
+    cursor: pointer;
+    pointer-events: none;
+}
+#disarm i{
+    font-size: 7vw;
+    margin-bottom: 25px;
+    transition: none;
+    cursor: pointer;
+}
+#disarm p {
+    font-size: 2.2vw;
+    transition: none;
+    cursor: pointer;
+}
+#disarm b{
+    transition: none;
+    cursor: pointer;
+}
+#disarm h1 {
+    display: none;
+    font-size: 1.6vw;
+    text-align: center;
+    transition: none;
+}
+#disarm h1 span{
+    font-size: 3.2vw;
+    font-weight: 600;
+    transition: none;
+}
+#disarm:active{
+    transform: scale(0.9);
+}
+#arm{
+    width: 25%;
+    height: 0;
+    padding-top: 12.5%;
+    padding-bottom: 12.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25px;
+    color: darkgrey;
+    border: 5px solid darkgrey;
+    border-radius: 100%;
+    cursor: pointer;
+}
+#arm i{
+    font-size: 7vw;
+    margin-bottom: 25px;
+    transition: none;
+    cursor: pointer;
+}
+#arm p {
+    font-size: 2.2vw;
+    transition: none;
+    cursor: pointer;
+}
+#arm b{
+    transition: none;
+    cursor: pointer;
+}
+#arm h1 {
+    display: none;
+    font-size: 1.6vw;
+    text-align: center;
+    transition: none;
+}
+#arm h1 span{
+    font-size: 3.2vw;
+    font-weight: 600;
+    transition: none;
+}
+#arm:active{
+    transform: scale(0.9);
+}
+#panicBtn{
+    width: 50%;
+    height: 70px;
+    background-color: red;
+    border-radius: 100px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    position: fixed;
+    bottom: 30px;
+    left: 25%;
+    box-shadow: 0 0 5px red;
+    border: none;
+    z-index: 3;
+}
+#panicBtn i{
+    margin-right: 7px;
+}
+#panicScreen{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    bottom: -110%;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background-color: rgba(251,251,253,255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    box-shadow: 0 0 5px #9EBDFF;
+}
+#panicScreen i{
+    font-size: 150px;
+    color: red;
+    border-radius: 100%;
+    background-color: rgba(251,251,253,255);
+    box-shadow: 0 0 15px rgba(251,251,253,255);
+    z-index: 5;
+}
+#panicScreenButton{
+    width: 50%;
+    height: 70px;
+    background-color: red;
+    border-radius: 100px;
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    bottom: 30px;
+    box-shadow: 0 0 5px red;
+    border: none;
+    z-index: 5;
+}
+#panicScreenButton i{
+    font-size: 20px;
+    color: white;
+    background-color: transparent;
+    box-shadow: none;
+}
+@keyframes dotsOther{
+    0%{
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    50%{
+        width: 500px;
+        height: 500px;
+        opacity: 0;
+    }
+    100%{
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+@keyframes blinkPanic{
+    0%{
+        background-color: #9EBDFF;
+        box-shadow: #9EBDFF;
+    }
+    50%{
+        background-color: red;
+        box-shadow: red;
+    }
+    100%{
+        background-color: #9EBDFF;
+        box-shadow: #9EBDFF;
+    }
+}
+@keyframes spin{
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes blinkBorder{
+    0%{
+        border-color: #9EBDFF;
+    }
+    50%{
+        border-color: transparent;
+    }
+    100%{
+        border-color: #9EBDFF;
+    }
+}
+@keyframes blinkBorderRed{
+    0%{
+        border-color: red;
+    }
+    50%{
+        border-color: transparent;
+    }
+    100%{
+        border-color: red;
+    }
+}
+#panicLoader{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 5px solid darkgrey;
+    border-top: 5px solid #9EBDFF;
+    border-left: 5px solid #9EBDFF;
+    animation: spin 1s linear infinite;
+    opacity: 0;
+    display: none;
+}
+@media only screen and (max-width: 750px){
+    body{
+        overflow-y: none;
+    }
+    #screenSize{
+        display: flex;
+    }
+}
