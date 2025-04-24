@@ -104,7 +104,11 @@ function arm() {
         document.getElementById("disarmI").style.display = "none";
         document.getElementById("disarmP").style.display = "none";
         document.getElementById("disarmH1").style.display = "block";
-    }, 800);   
+        document.getElementById("touchInfo").style.animation = "none";
+    }, 800); 
+    setTimeout(() => {
+        document.getElementById("touchInfo").style.opacity = "0";
+    }, 850);   
 }
 
 document.getElementById("exitDelay").onended = function() {
@@ -260,7 +264,7 @@ function disarm() {
         document.getElementById("armI").style.display = "none";
         document.getElementById("armP").style.display = "none";
         document.getElementById("armH1").style.display = "block";
-    }, 800);   
+    }, 800);
 }
 
 document.getElementById("entryDelay").onended = function() {
@@ -934,7 +938,11 @@ function check(form)
             document.getElementById("disarm").style.opacity = "1";
             document.getElementById("panicBtn").style.bottom = "30px";
             document.getElementById("panicBtn").style.pointerEvents = "all";
+            document.getElementById("touchInfo").style.opacity = "1";
         }, 3910);
+        setTimeout(() => {
+            document.getElementById("touchInfo").style.animation = "touchInfoBlink 7s linear infinite";
+        }, 4210);
   }
     else{
         document.getElementById("ivestiKoda").style.opacity = "0.3";

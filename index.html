@@ -92,12 +92,13 @@
         <p><i class="fa-solid fa-tower-broadcast"></i> OK</p>
         <p id="statusDisarmed">Disarmed | <b>Stay</b></p>
         <p id="statusPanic" style="display: none;">PANIC</p>
-        <p id="statusArming" style="display: none;">Arming...</p>
+        <p id="statusArming" style="display: none;">Exit delay. <b>Arming...</b></p>
         <p id="statusArmed" style="display: none;">Armed | <b>Away</b></p>
         <p id="statusAlarm" style="display: none;">ALARM</p>
         <div id="time"></div>
     </div>
     <div id="screen">
+        <p id="touchInfo">Touch mode to change</p>
         <div id="disarm" ontouchstart onclick="disarm()">
             <i id="disarmI" class="fa-solid fa-unlock-keyhole"></i>
             <p id="disarmP">Disarmed | <b>Stay</b></p>

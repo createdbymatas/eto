@@ -259,6 +259,26 @@ button span{
     justify-content: space-around;
     align-items: center;
 }
+#touchInfo{
+    position: absolute;
+    font-size: 15px;
+    top: 100px;
+    animation: touchInfoBlink 7s linear infinite;
+}
+@keyframes touchInfoBlink{
+    0%{
+        opacity: 1;
+    }
+    70%{
+        opacity: 1;
+    }
+    85%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 #disarm{
     width: 25%;
     height: 0;
