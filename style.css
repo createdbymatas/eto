@@ -369,7 +369,8 @@ button span{
     transform: scale(0.9);
 }
 #panicBtn{
-    width: 50%;
+    width: 30%;
+    min-width: 200px;
     height: 70px;
     background-color: red;
     border-radius: 100px;
@@ -380,8 +381,7 @@ button span{
     font-size: 25px;
     position: fixed;
     bottom: 30px;
-    left: 25%;
-    box-shadow: 0 0 5px red;
+    left: 35%;
     border: none;
     z-index: 3;
 }
@@ -413,7 +413,8 @@ button span{
     z-index: 5;
 }
 #panicScreenButton{
-    width: 50%;
+    width: 30%;
+    min-width: 200px;
     height: 70px;
     background-color: red;
     border-radius: 100px;
@@ -421,12 +422,11 @@ button span{
     font-size: 25px;
     position: absolute;
     bottom: 30px;
-    box-shadow: 0 0 5px red;
     border: none;
     z-index: 5;
 }
 #panicScreenButton i{
-    font-size: 20px;
+    font-size: 25px;
     color: white;
     background-color: transparent;
     box-shadow: none;
